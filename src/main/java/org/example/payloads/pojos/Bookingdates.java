@@ -1,4 +1,4 @@
-package org.example.payloads;
+package org.example.payloads.pojos;
 
 
 
