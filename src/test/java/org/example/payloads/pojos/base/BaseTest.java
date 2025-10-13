@@ -1,6 +1,9 @@
 package org.example.payloads.pojos.base;
 
+import io.qameta.allure.internal.shadowed.jackson.core.JsonProcessingException;
+import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
@@ -9,6 +12,9 @@ import org.example.actions.AssertActions;
 import org.example.endpoints.APIConstants;
 import org.example.modules.PayloadManager;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseTest {
 
@@ -25,7 +31,7 @@ public class BaseTest {
     public ValidatableResponse validatableResponse;
 
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setConfig() {
         payloadManager = new PayloadManager();
         assertActions = new AssertActions();
@@ -35,6 +41,17 @@ public class BaseTest {
                 .build().log().all();
 
 
+    }
+
+    // Get Token
+    public String getToken() throws JsonProcessingException {
+
+        requestSpecification = RestAssured.given().baseUri(APIConstants.BASE_URL).basePath("/auth");
+        String payload = payloadManager.setToken();
+        response = requestSpecification.contentType(ContentType.JSON)
+                        .body(payload).when().post();
+        jsonPath = new JsonPath(response.asString());
+        return jsonPath.getString("token");
 
     }
 }
