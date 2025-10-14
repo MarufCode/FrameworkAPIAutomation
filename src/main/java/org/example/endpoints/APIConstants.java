@@ -6,6 +6,8 @@ public class APIConstants {
 
     public static String CREATE_UPDATE_BOOKING_URL = "/booking";
 
+    public static String GET_TOKEN_URL = "/auth";
+
 
 
 }

@@ -48,8 +48,6 @@ public class PayloadManager {
     }
 
 
-
-
     public String updatePayload() throws JsonProcessingException {
         Faker faker = new Faker();
         ObjectMapper objectMapper1 = new ObjectMapper();
@@ -103,6 +101,26 @@ public class PayloadManager {
         return objectMapper.writeValueAsString(auth);
     }
 
+    public String invalidUsernameTokenCred() throws JsonProcessingException {
+        Auth auth = new Auth();
+        auth.setUsername("ADMIN");
+        auth.setPassword("password123");
+        return objectMapper.writeValueAsString(auth);
+    }
+
+    public String invalidPasswordTokenCred() throws JsonProcessingException {
+        Auth auth = new Auth();
+        auth.setUsername("ADMIN");
+        auth.setPassword("password12");
+        return objectMapper.writeValueAsString(auth);
+    }
+
+    public String MissingCredentials() throws JsonProcessingException {
+        Auth auth = new Auth();
+        return objectMapper.writeValueAsString(auth);
+    }
+
+
 
     public BookingResponse JsonToObject(String jsonString) throws JsonProcessingException {
         objectMapper = new ObjectMapper();
@@ -116,4 +134,22 @@ public class PayloadManager {
         Booking bookingResponse = objectMapper.readValue(jsonString, Booking.class);
         return bookingResponse;
     }
+
+
+    // Default payload (for most tests)
+    public String createBookingPayload(String firstName, String lastName, int totalPrice,
+                                       boolean depositPaid, String checkin, String checkout, String needs) {
+        return "{\n" +
+                "  \"firstname\": \"" + firstName + "\",\n" +
+                "  \"lastname\": \"" + lastName + "\",\n" +
+                "  \"totalprice\": " + totalPrice + ",\n" +
+                "  \"depositpaid\": " + depositPaid + ",\n" +
+                "  \"bookingdates\": {\n" +
+                "    \"checkin\": \"" + checkin + "\",\n" +
+                "    \"checkout\": \"" + checkout + "\"\n" +
+                "  },\n" +
+                "  \"additionalneeds\": \"" + needs + "\"\n" +
+                "}";
+    }
+
 }

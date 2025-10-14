@@ -30,6 +30,10 @@ public class BaseTest {
 
     public ValidatableResponse validatableResponse;
 
+    public String bookingId;
+
+    public String bookingIdPojo;
+
 
     @BeforeMethod(alwaysRun = true)
     public void setConfig() {
@@ -54,4 +58,6 @@ public class BaseTest {
         return jsonPath.getString("token");
 
     }
+
+
 }
