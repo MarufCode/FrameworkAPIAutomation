@@ -1,5 +1,7 @@
 package org.example.tests.crud;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
 import io.qameta.allure.internal.shadowed.jackson.core.JsonProcessingException;
 import io.restassured.RestAssured;
 import org.example.endpoints.APIConstants;
@@ -12,6 +14,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CreateBookingAPITests extends BaseTest {
 
+    @Owner("MARUF")
+    @Description("Verify that the Create Booking with the valid Payload, Status Code 200")
     @Test
     public void testCreateBooking_ValidData_ShouldReturnBookingId() {
      requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING_URL);
@@ -24,6 +28,7 @@ public class CreateBookingAPITests extends BaseTest {
      System.out.println(bookingId);
     }
 
+    @Owner("MARUF")
     @Test
     public void testCreateBooking_MissingFirstname_ShouldReturnBadRequest() throws JsonProcessingException {
         String  missingFirstname_payload = payloadManager.createBookingPayload("", "Sherikar", 1200, true, "2025-10-15", "2025-10-20", "Dinner");
@@ -36,6 +41,7 @@ public class CreateBookingAPITests extends BaseTest {
         assertThat(response.jsonPath().getString("firstname")).isEqualTo("missing firstname");
     }
 
+    @Owner("MARUF")
     @Test
     public void testCreateBooking_MissingLastname_ShouldReturnBadRequest() {
         String missingLastname_payload = payloadManager.createBookingPayload("Sherikar", "", 1200, true, "2025-10-15", "2025-10-20", "Dinner");
@@ -47,6 +53,7 @@ public class CreateBookingAPITests extends BaseTest {
         assertThat(response.jsonPath().getString("lastname")).isEqualTo("missing lastname");
     }
 
+    @Owner("MARUF")
     @Test
     public void testCreateBooking_MissingBookingDates_ShouldReturnBadRequest() {
         String MissingBookingDates_payload = payloadManager.createBookingPayload("Sherikar", "MAruf", 1200, true, "", "", "Dinner");
@@ -59,6 +66,7 @@ public class CreateBookingAPITests extends BaseTest {
         assertThat(response.jsonPath().getString("checkout")).isEqualTo("missing checkout date");
     }
 
+    @Owner("MARUF")
     @Test
     public void testCreateBooking_InvalidDateFormat_ShouldReturnError() {
         String InvalidDateFormat_payload = payloadManager.createBookingPayload("Sherikar", "MAruf", 1200, true, "20-01-11", "2015-01-11", "Dinner");
@@ -71,6 +79,7 @@ public class CreateBookingAPITests extends BaseTest {
         assertThat(response.jsonPath().getString("checkout")).isEqualTo("Invalid date format");
     }
 
+    @Owner("MARUF")
     @Test
     public void testCreateBooking_NegativeTotalPrice_ShouldReturnError() {
         String NegativeTotalPrice_payload = payloadManager.createBookingPayload("Sherikar", "MAruf", -1200, true, "20-01-11", "2015-01-11", "Dinner");
@@ -83,6 +92,7 @@ public class CreateBookingAPITests extends BaseTest {
 
     }
 
+    @Owner("MARUF")
     @Test
     public void testCreateBooking_EmptyPayload_ShouldReturnBadRequest() {
         String EmptyPayload = payloadManager.createBookingPayload("", "", 56, true,  " ", " ", "");

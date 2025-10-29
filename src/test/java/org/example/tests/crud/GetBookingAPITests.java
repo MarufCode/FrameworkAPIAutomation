@@ -1,5 +1,7 @@
 package org.example.tests.crud;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Owner;
 import io.qameta.allure.internal.shadowed.jackson.core.JsonProcessingException;
 import io.restassured.RestAssured;
 import org.example.endpoints.APIConstants;
@@ -12,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GetBookingAPITests extends BaseTest {
 
-
+    @Owner("MARUF")
     @Test
     public void testGetBooking_ValidId_ShouldReturnBookingDetails() throws JsonProcessingException {
         // get an existing booking ID and verify all fields
@@ -48,6 +50,7 @@ public class GetBookingAPITests extends BaseTest {
         assertThat(depositpaid).isTrue();
     }
 
+    @Owner("MARUF")
     @Test
     public void testGetBooking_InvalidId_ShouldReturnNotFound() {
         // use non-existing booking ID and expect 404
@@ -61,6 +64,7 @@ public class GetBookingAPITests extends BaseTest {
         assertThat(responseBody).containsAnyOf("Not Found", "Booking not found", "Record not found");
     }
 
+    @Owner("MARUF")
     @Test
     public void testGetBooking_NegativeId_ShouldReturnBadRequest() {
         // use -1 or negative number and expect 400
