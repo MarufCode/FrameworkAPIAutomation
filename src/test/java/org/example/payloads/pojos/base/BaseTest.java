@@ -10,6 +10,7 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.example.actions.AssertActions;
 import org.example.endpoints.APIConstants;
+import org.example.modules.FakerPaylaod;
 import org.example.modules.PayloadManager;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,6 +26,8 @@ public class BaseTest {
     public AssertActions assertActions;
 
     public PayloadManager payloadManager;
+
+    public FakerPaylaod fakerPaylaod;
 
     public JsonPath jsonPath;
 

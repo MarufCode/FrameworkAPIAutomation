@@ -12,10 +12,7 @@ import org.example.payloads.pojos.Bookingdates;
 
 import java.util.Arrays;
 
-public class PayloadManager {
-
-    //JAVA -> GSON
-
+public class PayloadManager{
 
 
     public String createPayloadGSON(){
