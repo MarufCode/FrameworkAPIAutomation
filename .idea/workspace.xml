@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cad78511-cd08-42ee-83e7-31d73013d25a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/payloads/pojos/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/payloads/pojos/base/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/tests/crud/GetBookingAPITests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/tests/crud/GetBookingAPITests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/testngXMLs/testng_crud_get.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/testngXMLs/testng_crud_get.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +67,7 @@
     "TestNG.GetBookingAPITests.executor": "Run",
     "TestNG.GetBookingAPITests.testGetBooking_InvalidId_ShouldReturnNotFound.executor": "Run",
     "TestNG.GetBookingAPITests.testGetBooking_NegativeId_ShouldReturnBadRequest.executor": "Run",
+    "TestNG.GetBookingAPITests.testGetBooking_NonNumericId_ShouldReturnBadRequest.executor": "Run",
     "TestNG.GetBookingAPITests.testGetBooking_ValidId_CheckContentType_ShouldBeJson.executor": "Run",
     "TestNG.GetBookingAPITests.testGetBooking_ValidId_ShouldReturnBookingDetails.executor": "Run",
     "TestNG.LoginWithDDT.executor": "Run",
@@ -88,7 +91,7 @@
       <recent name="org.example.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.GetBookingAPITests.testGetBooking_ValidId_CheckContentType_ShouldBeJson">
+  <component name="RunManager" selected="TestNG.C:/Users/Maruf.sherikar.EXT.SVKMGRP/IdeaProjects/FrameworkAPIAutomation/src/test/testngXMLs/testng_crud_get.xml">
     <configuration name="C:/Users/Maruf.sherikar.EXT.SVKMGRP/IdeaProjects/FrameworkAPIAutomation/src/test/testngXMLs/testng_crud_get.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="FrameworkAPIAutomation" />
       <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/testngXMLs/testng_crud_get.xml" />
@@ -135,6 +138,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GetBookingAPITests.testGetBooking_NonNumericId_ShouldReturnBadRequest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="FrameworkAPIAutomation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.tests.crud.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.tests.crud" />
+      <option name="MAIN_CLASS_NAME" value="org.example.tests.crud.GetBookingAPITests" />
+      <option name="METHOD_NAME" value="testGetBooking_NonNumericId_ShouldReturnBadRequest" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GetBookingAPITests.testGetBooking_ValidId_CheckContentType_ShouldBeJson" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="FrameworkAPIAutomation" />
       <extension name="coverage">
@@ -153,31 +174,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GetBookingAPITests.testGetBooking_ValidId_ShouldReturnBookingDetails" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="FrameworkAPIAutomation" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.tests.crud.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example.tests.crud" />
-      <option name="MAIN_CLASS_NAME" value="org.example.tests.crud.GetBookingAPITests" />
-      <option name="METHOD_NAME" value="testGetBooking_ValidId_ShouldReturnBookingDetails" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.GetBookingAPITests.testGetBooking_ValidId_CheckContentType_ShouldBeJson" />
         <item itemvalue="TestNG.C:/Users/Maruf.sherikar.EXT.SVKMGRP/IdeaProjects/FrameworkAPIAutomation/src/test/testngXMLs/testng_crud_get.xml" />
+        <item itemvalue="TestNG.GetBookingAPITests.testGetBooking_NonNumericId_ShouldReturnBadRequest" />
+        <item itemvalue="TestNG.GetBookingAPITests.testGetBooking_ValidId_CheckContentType_ShouldBeJson" />
         <item itemvalue="TestNG.GetBookingAPITests.testGetBooking_NegativeId_ShouldReturnBadRequest" />
         <item itemvalue="TestNG.GetBookingAPITests.testGetBooking_InvalidId_ShouldReturnNotFound" />
-        <item itemvalue="TestNG.GetBookingAPITests.testGetBooking_ValidId_ShouldReturnBookingDetails" />
       </list>
     </recent_temporary>
   </component>

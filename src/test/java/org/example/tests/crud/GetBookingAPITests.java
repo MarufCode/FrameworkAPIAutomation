@@ -82,13 +82,14 @@ public class GetBookingAPITests extends BaseTest {
     @Test
     public void testGetBooking_NonNumericId_ShouldReturnBadRequest() {
         // use invalid ID like "abc" and expect 400 or error
-        String NonNumericID = "abc";
-        requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING_URL + "/" + NonNumericID)
-                .when().get();
-        validatableResponse = response.then().log().all();
-        validatableResponse.statusCode(400);
-        String resBody = response.asString();
-        assertThat(resBody).contains("Bad Request");
+            String nonNumericID = "abc";
+            response = requestSpecification
+                    .basePath(APIConstants.CREATE_UPDATE_BOOKING_URL + "/" + nonNumericID)
+                    .when().get();
+            validatableResponse = response.then().log().all();
+            validatableResponse.statusCode(400);
+            String resBody = response.asString();
+            assertThat(resBody).contains("Bad Request");
     }
 
     @Owner("MARUF")

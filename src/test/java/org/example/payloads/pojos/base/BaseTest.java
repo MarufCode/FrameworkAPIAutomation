@@ -15,6 +15,7 @@ import org.example.modules.PayloadManager;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BaseTest {
@@ -42,10 +43,27 @@ public class BaseTest {
     public void setConfig() {
         payloadManager = new PayloadManager();
         assertActions = new AssertActions();
-        requestSpecification = new RequestSpecBuilder()
+        requestSpecification  = new RequestSpecBuilder()
                 .setBaseUri(APIConstants.BASE_URL)
                 .addHeader("Content-Type", "application/json")
                 .build().log().all();
+        requestSpecification = given()
+                .spec(requestSpecification).log().all();
+
+//        @BeforeMethod(alwaysRun = true)
+//        public void setConfig() {
+//            payloadManager = new PayloadManager();
+//            assertActions = new AssertActions();
+//            RequestSpecification spec = new RequestSpecBuilder()
+//                    .setBaseUri(APIConstants.BASE_URL)
+//                    .addHeader("Content-Type", "application/json")
+//                    .build();
+//            requestSpecification = given()
+//                    .spec(spec)
+//                    .log().all();
+//        }
+
+
 
 
     }
@@ -53,7 +71,7 @@ public class BaseTest {
     // Get Token
     public String getToken() throws JsonProcessingException {
 
-        requestSpecification = RestAssured.given().baseUri(APIConstants.BASE_URL).basePath("/auth");
+        requestSpecification = given().baseUri(APIConstants.BASE_URL).basePath("/auth");
         String payload = payloadManager.setToken();
         response = requestSpecification.contentType(ContentType.JSON)
                         .body(payload).when().post();
