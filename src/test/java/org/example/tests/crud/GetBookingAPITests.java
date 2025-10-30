@@ -78,26 +78,62 @@ public class GetBookingAPITests extends BaseTest {
         assertThat(resBody).contains( "Bad Request");
     }
 
+    @Owner("MARUF")
     @Test
     public void testGetBooking_NonNumericId_ShouldReturnBadRequest() {
         // use invalid ID like "abc" and expect 400 or error
+        String NonNumericID = "abc";
+        requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING_URL + "/" + NonNumericID)
+                .when().get();
+        validatableResponse = response.then().log().all();
+        validatableResponse.statusCode(400);
+        String resBody = response.asString();
+        assertThat(resBody).contains("Bad Request");
     }
 
+    @Owner("MARUF")
     @Test
     public void testGetBooking_MissingId_ShouldReturnMethodNotAllowed() {
         // call /booking without ID, expect 405 (method not allowed)
+        requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING_URL)
+                .when().get();
+        validatableResponse = response.then().log().all();
+        validatableResponse.statusCode(405);
+        String res = response.asString();
+        assertThat(res).contains("Method not allowed");
     }
 
+    @Owner("MARUF")
     @Test
     public void testGetBooking_ValidId_ResponseShouldContainRequiredFields() {
         // verify fields like firstname, lastname, totalprice, etc.
     }
 
+    @Owner("MARUF")
     @Test
-    public void testGetBooking_ValidId_CheckContentType_ShouldBeJson() {
+    public void testGetBooking_ValidId_CheckContentType_ShouldBeJson() throws JsonProcessingException {
         // verify response content type = application/json
+        FakerPaylaod fakerPaylaod = new FakerPaylaod();
+        requestSpecification .basePath(APIConstants.CREATE_UPDATE_BOOKING_URL);
+        response = RestAssured.given().spec(requestSpecification)
+                .when().body(fakerPaylaod.fakerGson()).post();
+        validatableResponse = response.then().log().all();
+        jsonPath = jsonPath.from(response.asString());
+        validatableResponse.statusCode(200);
+        // Direct Extraction from JSon Path
+        bookingId = jsonPath.getString("bookingid");
+        // Extraction using Booking Response class
+        BookingResponse bookingResponse = payloadManager.JsonToObject(response.asString());
+        bookingIdPojo = bookingResponse.getBookingid().toString();
+        System.out.println("Booking Id " + jsonPath.getString("bookingid"));
+        assertThat(bookingId).isNotBlank().isNotNull();
+
+        response = RestAssured.given().baseUri("https://restful-booker.herokuapp.com").pathParam("id", bookingId)
+                .when().get("/booking/{id}");
+        validatableResponse = response.then().log().all().statusCode(200).contentType("application/json");
     }
 
+    @Owner("MARUF")
     @Test
     public void testGetBooking_ValidId_ResponseTime_ShouldBeUnder2Seconds() {
         // check response time assertion
