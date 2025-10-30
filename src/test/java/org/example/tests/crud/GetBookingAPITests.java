@@ -24,7 +24,7 @@ public class GetBookingAPITests extends BaseTest {
                 .when().body(fakerPaylaod.fakerGson()).post();
         validatableResponse = response.then().log().all();
         jsonPath = jsonPath.from(response.asString());
-        validatableResponse.statusCode(200);
+        assertActions.verifyStatusCode(response, 200);
         // Direct Extraction from JSon Path
         bookingId = jsonPath.getString("bookingid");
         // Extraction using Booking Response class
@@ -59,7 +59,7 @@ public class GetBookingAPITests extends BaseTest {
         response = RestAssured.given().spec(requestSpecification)
                 .when().get();
         validatableResponse = response.then().log().all();
-        validatableResponse.statusCode(404);
+        assertActions.verifyStatusCodeIs4xx(response);
         String responseBody = response.asString();
         assertThat(responseBody).containsAnyOf("Not Found", "Booking not found", "Record not found");
     }
@@ -73,7 +73,7 @@ public class GetBookingAPITests extends BaseTest {
         response = RestAssured.given().spec(requestSpecification)
                 .when().get();
         validatableResponse = response.then().log().all();
-        validatableResponse.statusCode(400);
+        assertActions.verifyStatusCodeIs4xx(response);
         String resBody = response.asString();
         assertThat(resBody).contains( "Bad Request");
     }
@@ -87,7 +87,7 @@ public class GetBookingAPITests extends BaseTest {
                     .basePath(APIConstants.CREATE_UPDATE_BOOKING_URL + "/" + nonNumericID)
                     .when().get();
             validatableResponse = response.then().log().all();
-            validatableResponse.statusCode(400);
+            assertActions.verifyStatusCodeIs4xx(response);
             String resBody = response.asString();
             assertThat(resBody).contains("Bad Request");
     }
@@ -99,7 +99,7 @@ public class GetBookingAPITests extends BaseTest {
         requestSpecification.basePath(APIConstants.CREATE_UPDATE_BOOKING_URL)
                 .when().get();
         validatableResponse = response.then().log().all();
-        validatableResponse.statusCode(405);
+        assertActions.verifyStatusCodeIs4xx(response);
         String res = response.asString();
         assertThat(res).contains("Method not allowed");
     }
@@ -120,7 +120,7 @@ public class GetBookingAPITests extends BaseTest {
                 .when().body(fakerPaylaod.fakerGson()).post();
         validatableResponse = response.then().log().all();
         jsonPath = jsonPath.from(response.asString());
-        validatableResponse.statusCode(200);
+        assertActions.verifyStatusCodeIs2xx(response);
         // Direct Extraction from JSon Path
         bookingId = jsonPath.getString("bookingid");
         // Extraction using Booking Response class

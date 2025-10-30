@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cad78511-cd08-42ee-83e7-31d73013d25a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/payloads/pojos/base/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/payloads/pojos/base/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/actions/AssertActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/actions/AssertActions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/tests/crud/GetBookingAPITests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/tests/crud/GetBookingAPITests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/testngXMLs/testng_crud_get.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/testngXMLs/testng_crud_get.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,10 +176,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="TestNG.C:/Users/Maruf.sherikar.EXT.SVKMGRP/IdeaProjects/FrameworkAPIAutomation/src/test/testngXMLs/testng_crud_get.xml" />
+        <item itemvalue="TestNG.GetBookingAPITests.testGetBooking_InvalidId_ShouldReturnNotFound" />
         <item itemvalue="TestNG.GetBookingAPITests.testGetBooking_NonNumericId_ShouldReturnBadRequest" />
         <item itemvalue="TestNG.GetBookingAPITests.testGetBooking_ValidId_CheckContentType_ShouldBeJson" />
         <item itemvalue="TestNG.GetBookingAPITests.testGetBooking_NegativeId_ShouldReturnBadRequest" />
-        <item itemvalue="TestNG.GetBookingAPITests.testGetBooking_InvalidId_ShouldReturnNotFound" />
       </list>
     </recent_temporary>
   </component>
